@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Loader from './Loader/Loader';
-import { fetchPhoto } from 'components/FetchPictures/FetchPictures';
+import { fetchPhoto } from './FetchPictures';
 
 import SearchBar from './SearchBar/SearchBar';
 import ImageGallery from './ImageGallery/ImageGallery';
