@@ -33,22 +33,6 @@ const App = () => {
     ApiFetshPhoto();
   }, [numberPage, filter]);
 
-  useEffect(() => {
-    if (filter.trim() === '') return;
-    const ApiFetshPhoto = async () => {
-      try {
-        setLoading(true);
-        const itemPicture = await fetchPhoto(1, filter);
-        setPhotos([...itemPicture.data.hits]);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    ApiFetshPhoto();
-  }, [filter]);
-
   const onAddMore = () => {
     setNumberPage(prevNumberPage => prevNumberPage + 1);
   };
@@ -57,7 +41,11 @@ const App = () => {
     e.preventDefault();
     const wordForSearch = e.target.elements.search.value.trim();
     if (wordForSearch) {
-      setFilter(wordForSearch);
+      if (wordForSearch !== filter) {
+        setFilter(wordForSearch);
+        setNumberPage(1);
+        setPhotos([]);
+      }
     }
   };
 
